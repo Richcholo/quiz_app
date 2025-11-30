@@ -22,7 +22,7 @@ def results_screen(root, quiz):
 
     tk.Label(
         root,
-        text=f"Your Final Score:\n{quiz.score} / 5",
+        text=f"Your Final Score:\n{quiz.score} / 10",
         font=("Arial", 22, "bold"),
         fg="#4cd137", # Green color for score
         bg="#1e1e2f"
@@ -143,7 +143,7 @@ def load_screen(root, quiz):
     btn_frame.pack(pady=20)
 
     # Note: These names must match dictionary keys in quiz.py
-    topics = ["Gaming", "Music", "IT Questions"]
+    topics = ["Gaming", "Music", "IT-Related", "Movies","Math"]
 
     for topic in topics:
         tk.Button(
