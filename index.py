@@ -143,7 +143,7 @@ def load_screen(root, quiz):
     btn_frame.pack(pady=20)
 
     # Note: These names must match dictionary keys in quiz.py
-    topics = ["Gaming", "Music", "IT-Related", "Movies","Math"]
+    topics = ["Gaming", "Music", "Who's that Champion?", "Movies","Math"]
 
     for topic in topics:
         tk.Button(
