@@ -1,6 +1,6 @@
 # NOTE: tapos na main logic, meron nang scoring system
 # TODO: Expand yung quiz para TEN QUESTION EACH and add kayo 2 new topics
-# TODO: Add a save_highscore() function to write the best score to a .txt file
+# TODO: Add a save_highscore() function to write the best score to a .txt file,
 
 import random
 
@@ -83,3 +83,40 @@ class Quiz:
         
         # Move to next question automatically
         self.q_index += 1
+
+    def save_highscore(self):
+        # Save highscore per topic with a simple key-value format
+        highscores = {}
+        try:
+            with open("highscore.txt", "r") as file:
+                for line in file:
+                    if ':' in line:
+                        topic, score = line.strip().split(':', 1)
+                        highscores[topic] = int(score)
+        except (FileNotFoundError, ValueError):
+            pass
+
+        topic = self.current_topic
+        prev_high = highscores.get(topic, 0)
+
+        #Compare and save if current score is higher
+        if self.score > prev_high:
+            highscores[topic] = self.score
+            with open("highscore.txt", "w") as file:
+                for topic, score in highscores.items():
+                    file.write(f"{topic}:{score}\n")
+            return True
+        return False
+
+    def get_highscore(self, topic):
+        # Load highscore for a specific topic
+        try:
+            with open("highscore.txt", "r") as file:
+                for line in file:
+                    if ':' in line:
+                        t, score = line.strip().split(':', 1)
+                        if t == topic:
+                            return int(score)
+        except (FileNotFoundError, ValueError):
+            pass
+        return 0

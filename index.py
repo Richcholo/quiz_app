@@ -50,6 +50,17 @@ def results_screen(root, quiz):
         command=root.destroy
     ).pack(pady=5)
 
+    # Display Highscore for the current topic
+    quiz.save_highscore()
+    topic = quiz.current_topic
+    highscore = quiz.get_highscore(topic)
+    tk.Label(
+        root,
+        text=f"{topic} Highscore: {highscore}",
+        font=("Arial", 14),
+        fg="white",
+        bg="#1e1e2f"
+    ).pack(pady=10)
 
 # Question screen
 def question(root, quiz):
